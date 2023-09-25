@@ -1,0 +1,13 @@
+.d-flex {
+    display: flex;
+  }
+  
+  .align-center {
+    align-items: center;
+  }
+
+  .card-content {
+    border: 1px solid #ccc; 
+    padding: 10px; 
+  }
+  

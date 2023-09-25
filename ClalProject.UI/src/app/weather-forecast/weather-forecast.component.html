@@ -7,7 +7,7 @@
       <button type="submit" (click)="onCitySubmit()">Submit</button>
     </div>
   
-    <div class="forecast-container">
+    <div class="forecast-container" fxLayout="row">
       <app-forecast-day-card *ngFor="let forecast of forecast.forecastDay" [forecast]="forecast"></app-forecast-day-card>
     </div>
   </div>

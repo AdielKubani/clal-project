@@ -9,11 +9,18 @@ namespace ClalProjectApi.Controllers
     {
         private static readonly Stopwatch Stopwatch = new Stopwatch();
 
-        [HttpGet]
-        public IActionResult GetRandomNumber(int fromNum = 1, int toNum = 100)
+        [HttpGet("{fromNum}/{toNum}")]
+        public IActionResult GetRandomNumber(int fromNum, int toNum)
         {
+            if (fromNum >= toNum)
+            {
+                return BadRequest("fromNum must be less than toNum");
+            }
+
             if (!Stopwatch.IsRunning)
+            {
                 Stopwatch.Start();
+            }
 
             long elapsedMilliseconds = Stopwatch.ElapsedMilliseconds;
 

@@ -10,15 +10,15 @@ export interface IForecast {
 export interface IForecastDay {
     date: Date
     day: IDay;
+    hour: IHour[];
 }
 export interface IDay {
     avgtemp_c: number;
     avgvis_km: number;
-    hour: IHour[];
 }
 
 export interface IHour {
-    Time: Date;
+    time: string;
     temp_c: number;
     condition: ICondition;
 }

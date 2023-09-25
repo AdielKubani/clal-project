@@ -1,4 +1,5 @@
 using ClalProjectApi.Data;
+using ClalProjectApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ builder.Services.AddCors(options => options.AddPolicy(
         builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
     }
     ));
-
+builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 
 var app = builder.Build();
 

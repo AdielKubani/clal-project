@@ -8,4 +8,9 @@ import { IForecastDay } from 'src/models/weather-forecast.interface';
 })
 export class ForecastDayCardComponent {
    @Input() forecast: IForecastDay = {} as IForecastDay;
+   hourlyForecastEnabled = false
+
+   toggleHourlyForecast() {
+    this.hourlyForecastEnabled = !this.hourlyForecastEnabled;
+  }
 }

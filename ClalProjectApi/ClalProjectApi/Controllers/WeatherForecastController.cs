@@ -1,4 +1,5 @@
 using ClalProjectApi.Models;
+using ClalProjectApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClalProjectApi.Controllers
@@ -7,13 +8,11 @@ namespace ClalProjectApi.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private HttpClient _httpClient;
-        private IConfiguration _configuration;
+        private IWeatherForecastService _weatherForecastService;
 
-        public WeatherForecastController(HttpClient httpClient, IConfiguration configuration)
+        public WeatherForecastController(IWeatherForecastService weatherForecastService)
         {
-            _httpClient = httpClient;
-            _configuration = configuration;
+            _weatherForecastService = weatherForecastService;
         }
 
         [HttpGet("{city}")]
@@ -21,10 +20,7 @@ namespace ClalProjectApi.Controllers
         {
             try 
             {
-                var weatherUrl = _configuration.GetValue<string>("WeaterForecastApi");
-                string weatherUrlWithQuery = string.Format(weatherUrl, city);
-                var response = await _httpClient.GetFromJsonAsync<WeatherForecast>(weatherUrlWithQuery);
-                var weatherForecast = "the weatehr in " + city + " is: " + response.Current.Temp_C.ToString() + " condition " + response.Current.Condition.Text;
+                var weatherForecast = await _weatherForecastService.GetWeatherForecast(city);
 
                 return Ok(weatherForecast);
             }
@@ -35,15 +31,13 @@ namespace ClalProjectApi.Controllers
         }
 
         [HttpGet("ThreeDayWeatherForecast/{city}")]
-        public async Task<ActionResult<string>> GetThreeDayWeatherForecast(string city)
+        public async Task<ActionResult<Forecast>> GetThreeDayWeatherForecast(string city)
         {
             try
             {
-                var weatherUrl = _configuration.GetValue<string>("WeaterForecastApi");
-                string weatherUrlWithQuery = string.Format(weatherUrl, city);
-                var response = await _httpClient.GetFromJsonAsync<WeatherForecast>(weatherUrlWithQuery.ToString());
+                var weatherForecastForThreeDays = await _weatherForecastService.GetThreeDayWeatherForecast(city);
 
-                return Ok(response.Forecast);
+                return Ok(weatherForecastForThreeDays);
             }
             catch (Exception ex)
             {

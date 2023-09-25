@@ -1,7 +1,39 @@
-<div class="forecast-item">
-    <div class="forecast-content">
-      <p class="date">{{ forecast.date | date: 'yyyy-MM-dd' }}</p>
+<!-- <div class="forecast-item">
+  <mat-card class="forecast-content" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-header>
+      <mat-card-title class="date">{{ forecast.date | date: 'yyyy-MM-dd' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
       <p class="temp">Avg Temperature: {{ forecast.day.avgtemp_c }}°C</p>
       <p class="wind">Wind Speed: {{ forecast.day.avgvis_km }} km/h</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="toggleHourlyForecast()">Toggle Hourly Forecast</button>
+    </mat-card-actions>
+
+    <div class="weather-hour-card" *ngIf="hourlyForecastEnabled">
+      <app-forecast-hour-card *ngFor="let hour of forecast.hour" [hour]="hour"></app-forecast-hour-card>
     </div>
+  </mat-card>
+</div> -->
+
+<div class="forecast-item">
+  <mat-card class="forecast-content" fxLayout="column" fxLayoutAlign="center">
+    <mat-card-header class="date" fxLayoutAlign="center">
+      <mat-card-title >{{ forecast.date | date: 'yyyy-MM-dd' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayoutAlign="center">
+      <p class="temp">Avg Temperature: {{ forecast.day.avgtemp_c }}°C</p>
+      <p class="wind">Wind Speed: {{ forecast.day.avgvis_km }} km/h</p>
+    </mat-card-content>
+
+    <div fxLayout="column" fxLayoutAlign="center">
+      <button mat-raised-button class="custom-button" (click)="toggleHourlyForecast()">Toggle Hourly Forecast</button>
+    </div>      
+
+    <div class="weather-hour-card" *ngIf="hourlyForecastEnabled">
+      <app-forecast-hour-card *ngFor="let hour of forecast.hour" [hour]="hour"></app-forecast-hour-card>
+    </div>
+  </mat-card>
 </div>
