@@ -5,5 +5,7 @@
         public double Avgtemp_c { get; set; }
 
         public double Avgvis_km { get; set; }
+
+        public Hour[] Hour { get; set; }
     }
 }

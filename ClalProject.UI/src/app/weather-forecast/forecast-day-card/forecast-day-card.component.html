@@ -1,0 +1,7 @@
+<div class="forecast-item">
+    <div class="forecast-content">
+      <p class="date">{{ forecast.date | date: 'yyyy-MM-dd' }}</p>
+      <p class="temp">Avg Temperature: {{ forecast.day.avgtemp_c }}°C</p>
+      <p class="wind">Wind Speed: {{ forecast.day.avgvis_km }} km/h</p>
+    </div>
+</div>

@@ -24,7 +24,7 @@ namespace ClalProjectApi.Controllers
                 var weatherUrl = _configuration.GetValue<string>("WeaterForecastApi");
                 string weatherUrlWithQuery = string.Format(weatherUrl, city);
                 var response = await _httpClient.GetFromJsonAsync<WeatherForecast>(weatherUrlWithQuery);
-                var weatherForecast = "the weatehr in " + city + " is: " + response.Current.Temp_C.ToString() + " condition " + response.Current.Condition.text;
+                var weatherForecast = "the weatehr in " + city + " is: " + response.Current.Temp_C.ToString() + " condition " + response.Current.Condition.Text;
 
                 return Ok(weatherForecast);
             }

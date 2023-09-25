@@ -2,6 +2,7 @@
 {
     public class Condition
     {
-        public string text { get; set; }
+        public string Text { get; set; }
+        public string Icon { get; set; }
     }
 }
